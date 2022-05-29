@@ -42,7 +42,7 @@ ul.addEventListener('contextmenu', (e) => {
 });
 
 function render () {
-  if(input.value.length < 1) {
+  if(input.value.length < 1 || input.value.startsWith(' ')) {
     input.style = 'border-color:red';
     throw new Error('description field is empty');
   } else {
