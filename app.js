@@ -22,32 +22,38 @@ btn.addEventListener('click', () => {
   }
   task.value = input.value.toLowerCase();
   todoList.push(task);
-  render()
+  render();
 });
 
 ul.addEventListener('contextmenu', (e) => {
   e.preventDefault();
   li = e.target;
-  li.classList.toggle('important')
+  li.classList.toggle('important');
   if (li.classList.contains('important')) {
-    li.textContent = li.textContent.toUpperCase()
-    li.style = 'color:red'
+    li.textContent = li.textContent.toUpperCase();
+    li.style = 'color:red';
   } else {
-    li.textContent = li.textContent.toLowerCase()
-    li.style = 'color:black'
+    li.textContent = li.textContent.toLowerCase();
+    li.style = 'color:black';
   }
   if(e.ctrlKey) {
-    e.target.remove()
+    e.target.remove();
   }
-})
+});
 
 function render () {
-  const li = document.createElement('li');
+  if(input.value.length < 1) {
+    input.style = 'border-color:red';
+    throw new Error('description field is empty');
+  } else {
+    const li = document.createElement('li');
   li.textContent = input.value.toLowerCase();
-  li.id = `item-${i}`
-  i += 1
-  input.value = ''
+  li.id = `item-${i}`;
+  i += 1;
+  input.value = '';
+  input.style = 'border-color:black';
   input.focus();
   ul.prepend(li);
-}
+  }
+};
 
